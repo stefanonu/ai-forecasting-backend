@@ -3,11 +3,13 @@ services:
     name: ai-forecasting-api
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHONPATH
         value: .
+      - key: PYTHON_VERSION
+        value: "3.11.9"
       - key: ANTHROPIC_API_KEY
         sync: false
         description: "Optional: Claude API key for advanced column analysis (leave empty for free rule-based detection)"
